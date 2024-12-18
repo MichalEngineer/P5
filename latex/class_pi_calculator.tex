@@ -1,0 +1,262 @@
+\doxysection{Dokumentacja klasy Pi\+Calculator}
+\hypertarget{class_pi_calculator}{}\label{class_pi_calculator}\index{PiCalculator@{PiCalculator}}
+
+
+A class to calculate the value of Pi using numerical integration.  
+
+
+
+
+{\ttfamily \#include $<$integral.\+h$>$}
+
+\doxysubsubsection*{Metody publiczne}
+\begin{DoxyCompactItemize}
+\item 
+\mbox{\hyperlink{class_pi_calculator_a36310971996d21b221f0c4c4ca8e6816}{Pi\+Calculator}} (long long intervals, int threads)
+\begin{DoxyCompactList}\small\item\em Constructs a \doxylink{class_pi_calculator}{Pi\+Calculator} with the specified number of intervals and threads. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_pi_calculator_a5517141c51b94b34fb3d1986a25cc299}{calculate}} ()
+\begin{DoxyCompactList}\small\item\em Calculates the value of Pi using numerical integration. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_pi_calculator_a8c0a2f4a4dfe89994767b1c6c2078892}{get\+Execution\+Time}} () const
+\begin{DoxyCompactList}\small\item\em Retrieves the execution time of the last calculation. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Metody prywatne}
+\begin{DoxyCompactItemize}
+\item 
+double \mbox{\hyperlink{class_pi_calculator_a331c83ed62908c59fb266e2f6cdeffd0}{compute\+Segment}} (long long start, long long end)
+\begin{DoxyCompactList}\small\item\em Computes the contribution to Pi from a segment of the interval. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Statyczne metody prywatne}
+\begin{DoxyCompactItemize}
+\item 
+static void \mbox{\hyperlink{class_pi_calculator_a10f954274ef9371836d85af8bc11a531}{worker}} (\mbox{\hyperlink{class_pi_calculator}{Pi\+Calculator}} \texorpdfstring{$\ast$}{*}calculator, long long start, long long end, double \&result)
+\begin{DoxyCompactList}\small\item\em Worker function for parallel computation of Pi segments. \end{DoxyCompactList}\end{DoxyCompactItemize}
+\doxysubsubsection*{Atrybuty prywatne}
+\begin{DoxyCompactItemize}
+\item 
+long long \mbox{\hyperlink{class_pi_calculator_a23b9b741d766f181d43be31f7ef09500}{intervals\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The total number of intervals for integration. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7}{threads\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The number of threads for parallel computation. \end{DoxyCompactList}\item 
+double \mbox{\hyperlink{class_pi_calculator_aea6b9374df77caf30c3911f56da2b4cc}{execution\+Time\+\_\+}}
+\begin{DoxyCompactList}\small\item\em The execution time of the last calculation. \end{DoxyCompactList}\item 
+std\+::vector$<$ double $>$ \mbox{\hyperlink{class_pi_calculator_a89b160f45a01773f1a2fd42fd7c9d28c}{results\+\_\+}}
+\begin{DoxyCompactList}\small\item\em Storage for partial results from each thread. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegółowy}
+A class to calculate the value of Pi using numerical integration. 
+
+Definicja w linii \mbox{\hyperlink{integral_8h_source_l00045}{45}} pliku \mbox{\hyperlink{integral_8h_source}{integral.\+h}}.
+
+
+
+\doxysubsection{Dokumentacja konstruktora i destruktora}
+\Hypertarget{class_pi_calculator_a36310971996d21b221f0c4c4ca8e6816}\index{PiCalculator@{PiCalculator}!PiCalculator@{PiCalculator}}
+\index{PiCalculator@{PiCalculator}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{PiCalculator()}{PiCalculator()}}
+{\footnotesize\ttfamily \label{class_pi_calculator_a36310971996d21b221f0c4c4ca8e6816} 
+Pi\+Calculator\+::\+Pi\+Calculator (\begin{DoxyParamCaption}\item[{long long}]{intervals}{, }\item[{int}]{threads}{}\end{DoxyParamCaption})}
+
+
+
+Constructs a \doxylink{class_pi_calculator}{Pi\+Calculator} with the specified number of intervals and threads. 
+
+Konstruktor klasy \doxylink{class_pi_calculator}{Pi\+Calculator}.
+
+
+\begin{DoxyParams}{Parametry}
+{\em intervals} & The number of intervals for numerical integration. \\
+\hline
+{\em threads} & The number of threads to use for parallel computation.\\
+\hline
+{\em intervals} & Liczba przedziałów dla całkowania numerycznego. \\
+\hline
+{\em threads} & Liczba wątków do wykorzystania w obliczeniach. \\
+\hline
+\end{DoxyParams}
+
+
+Definicja w linii \mbox{\hyperlink{_intergral_8cpp_source_l00029}{29}} pliku \mbox{\hyperlink{_intergral_8cpp_source}{Intergral.\+cpp}}.
+
+
+
+\doxysubsection{Dokumentacja funkcji składowych}
+\Hypertarget{class_pi_calculator_a5517141c51b94b34fb3d1986a25cc299}\index{PiCalculator@{PiCalculator}!calculate@{calculate}}
+\index{calculate@{calculate}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{calculate()}{calculate()}}
+{\footnotesize\ttfamily \label{class_pi_calculator_a5517141c51b94b34fb3d1986a25cc299} 
+double Pi\+Calculator\+::calculate (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Calculates the value of Pi using numerical integration. 
+
+Oblicza wartość liczby Pi za pomocą numerycznej całki prostokątów.
+
+\begin{DoxyReturn}{Zwraca}
+The computed value of Pi.
+\end{DoxyReturn}
+Obliczenia są podzielone na segmenty, które są przetwarzane równolegle przez wiele wątków. Następnie wyniki częściowe są sumowane, a czas wykonywania jest mierzony.
+
+\begin{DoxyReturn}{Zwraca}
+Przybliżona wartość liczby Pi. 
+\end{DoxyReturn}
+
+
+Definicja w linii \mbox{\hyperlink{_intergral_8cpp_source_l00042}{42}} pliku \mbox{\hyperlink{_intergral_8cpp_source}{Intergral.\+cpp}}.
+
+\Hypertarget{class_pi_calculator_a331c83ed62908c59fb266e2f6cdeffd0}\index{PiCalculator@{PiCalculator}!computeSegment@{computeSegment}}
+\index{computeSegment@{computeSegment}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{computeSegment()}{computeSegment()}}
+{\footnotesize\ttfamily \label{class_pi_calculator_a331c83ed62908c59fb266e2f6cdeffd0} 
+double Pi\+Calculator\+::compute\+Segment (\begin{DoxyParamCaption}\item[{long long}]{start}{, }\item[{long long}]{end}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Computes the contribution to Pi from a segment of the interval. 
+
+Oblicza wkład w wartość liczby Pi z danego segmentu przedziału.
+
+
+\begin{DoxyParams}{Parametry}
+{\em start} & The start index of the interval segment. \\
+\hline
+{\em end} & The end index of the interval segment. \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+The computed partial result for the segment.
+\end{DoxyReturn}
+
+\begin{DoxyParams}{Parametry}
+{\em start} & Początek segmentu (indeks). \\
+\hline
+{\em end} & Koniec segmentu (indeks). \\
+\hline
+\end{DoxyParams}
+\begin{DoxyReturn}{Zwraca}
+Wynik częściowy dla podanego segmentu. 
+\end{DoxyReturn}
+
+
+Definicja w linii \mbox{\hyperlink{_intergral_8cpp_source_l00088}{88}} pliku \mbox{\hyperlink{_intergral_8cpp_source}{Intergral.\+cpp}}.
+
+\Hypertarget{class_pi_calculator_a8c0a2f4a4dfe89994767b1c6c2078892}\index{PiCalculator@{PiCalculator}!getExecutionTime@{getExecutionTime}}
+\index{getExecutionTime@{getExecutionTime}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{getExecutionTime()}{getExecutionTime()}}
+{\footnotesize\ttfamily \label{class_pi_calculator_a8c0a2f4a4dfe89994767b1c6c2078892} 
+double Pi\+Calculator\+::get\+Execution\+Time (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption}) const}
+
+
+
+Retrieves the execution time of the last calculation. 
+
+Zwraca czas wykonania ostatniego obliczenia.
+
+\begin{DoxyReturn}{Zwraca}
+The execution time in seconds.
+
+Czas wykonania w sekundach. 
+\end{DoxyReturn}
+
+
+Definicja w linii \mbox{\hyperlink{_intergral_8cpp_source_l00077}{77}} pliku \mbox{\hyperlink{_intergral_8cpp_source}{Intergral.\+cpp}}.
+
+\Hypertarget{class_pi_calculator_a10f954274ef9371836d85af8bc11a531}\index{PiCalculator@{PiCalculator}!worker@{worker}}
+\index{worker@{worker}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{worker()}{worker()}}
+{\footnotesize\ttfamily \label{class_pi_calculator_a10f954274ef9371836d85af8bc11a531} 
+void Pi\+Calculator\+::worker (\begin{DoxyParamCaption}\item[{\mbox{\hyperlink{class_pi_calculator}{Pi\+Calculator}} \texorpdfstring{$\ast$}{*}}]{calculator}{, }\item[{long long}]{start}{, }\item[{long long}]{end}{, }\item[{double \&}]{result}{}\end{DoxyParamCaption})\hspace{0.3cm}{\ttfamily [static]}, {\ttfamily [private]}}
+
+
+
+Worker function for parallel computation of Pi segments. 
+
+Funkcja robocza używana przez wątki do obliczania segmentów całki.
+
+
+\begin{DoxyParams}{Parametry}
+{\em calculator} & A pointer to the \doxylink{class_pi_calculator}{Pi\+Calculator} instance. \\
+\hline
+{\em start} & The start index of the interval segment. \\
+\hline
+{\em end} & The end index of the interval segment. \\
+\hline
+{\em result} & Reference to a double where the result will be stored.\\
+\hline
+{\em calculator} & Wskaźnik na instancję klasy \doxylink{class_pi_calculator}{Pi\+Calculator}. \\
+\hline
+{\em start} & Początek segmentu (indeks). \\
+\hline
+{\em end} & Koniec segmentu (indeks). \\
+\hline
+{\em result} & Referencja na zmienną, w której zostanie zapisany wynik częściowy. \\
+\hline
+\end{DoxyParams}
+
+
+Definicja w linii \mbox{\hyperlink{_intergral_8cpp_source_l00106}{106}} pliku \mbox{\hyperlink{_intergral_8cpp_source}{Intergral.\+cpp}}.
+
+
+
+\doxysubsection{Dokumentacja atrybutów składowych}
+\Hypertarget{class_pi_calculator_aea6b9374df77caf30c3911f56da2b4cc}\index{PiCalculator@{PiCalculator}!executionTime\_@{executionTime\_}}
+\index{executionTime\_@{executionTime\_}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{executionTime\_}{executionTime\_}}
+{\footnotesize\ttfamily \label{class_pi_calculator_aea6b9374df77caf30c3911f56da2b4cc} 
+double Pi\+Calculator\+::execution\+Time\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The execution time of the last calculation. 
+
+
+
+Definicja w linii \mbox{\hyperlink{integral_8h_source_l00086}{86}} pliku \mbox{\hyperlink{integral_8h_source}{integral.\+h}}.
+
+\Hypertarget{class_pi_calculator_a23b9b741d766f181d43be31f7ef09500}\index{PiCalculator@{PiCalculator}!intervals\_@{intervals\_}}
+\index{intervals\_@{intervals\_}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{intervals\_}{intervals\_}}
+{\footnotesize\ttfamily \label{class_pi_calculator_a23b9b741d766f181d43be31f7ef09500} 
+long long Pi\+Calculator\+::intervals\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The total number of intervals for integration. 
+
+
+
+Definicja w linii \mbox{\hyperlink{integral_8h_source_l00084}{84}} pliku \mbox{\hyperlink{integral_8h_source}{integral.\+h}}.
+
+\Hypertarget{class_pi_calculator_a89b160f45a01773f1a2fd42fd7c9d28c}\index{PiCalculator@{PiCalculator}!results\_@{results\_}}
+\index{results\_@{results\_}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{results\_}{results\_}}
+{\footnotesize\ttfamily \label{class_pi_calculator_a89b160f45a01773f1a2fd42fd7c9d28c} 
+std\+::vector$<$double$>$ Pi\+Calculator\+::results\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+Storage for partial results from each thread. 
+
+
+
+Definicja w linii \mbox{\hyperlink{integral_8h_source_l00087}{87}} pliku \mbox{\hyperlink{integral_8h_source}{integral.\+h}}.
+
+\Hypertarget{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7}\index{PiCalculator@{PiCalculator}!threads\_@{threads\_}}
+\index{threads\_@{threads\_}!PiCalculator@{PiCalculator}}
+\doxysubsubsection{\texorpdfstring{threads\_}{threads\_}}
+{\footnotesize\ttfamily \label{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7} 
+int Pi\+Calculator\+::threads\+\_\+\hspace{0.3cm}{\ttfamily [private]}}
+
+
+
+The number of threads for parallel computation. 
+
+
+
+Definicja w linii \mbox{\hyperlink{integral_8h_source_l00085}{85}} pliku \mbox{\hyperlink{integral_8h_source}{integral.\+h}}.
+
+
+
+Dokumentacja dla tej klasy została wygenerowana z plików\+:\begin{DoxyCompactItemize}
+\item 
+Intergral/\mbox{\hyperlink{integral_8h}{integral.\+h}}\item 
+Intergral/\mbox{\hyperlink{_intergral_8cpp}{Intergral.\+cpp}}\end{DoxyCompactItemize}

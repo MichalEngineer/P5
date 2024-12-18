@@ -1,0 +1,65 @@
+\doxysection{Intergral.\+cpp}
+\hypertarget{_intergral_8cpp_source}{}\label{_intergral_8cpp_source}\index{Intergral/Intergral.cpp@{Intergral/Intergral.cpp}}
+\mbox{\hyperlink{_intergral_8cpp}{Idź do dokumentacji tego pliku.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00018}00018\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{integral_8h}{integral.h}}"{}}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <iostream>}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <cmath>}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <chrono>}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ <mutex>}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00029}\mbox{\hyperlink{class_pi_calculator_a36310971996d21b221f0c4c4ca8e6816}{00029}}\ \mbox{\hyperlink{class_pi_calculator_a36310971996d21b221f0c4c4ca8e6816}{PiCalculator::PiCalculator}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ intervals,\ \textcolor{keywordtype}{int}\ threads)}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00030}00030\ \ \ \ \ :\ intervals\_(intervals),\ threads\_(threads),\ executionTime\_(0)\ \{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00031}00031\ \}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00032}00032\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00042}\mbox{\hyperlink{class_pi_calculator_a5517141c51b94b34fb3d1986a25cc299}{00042}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_pi_calculator_a5517141c51b94b34fb3d1986a25cc299}{PiCalculator::calculate}}()\ \{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00043}00043\ \ \ \ \ \mbox{\hyperlink{class_pi_calculator_a89b160f45a01773f1a2fd42fd7c9d28c}{results\_}}.resize(\mbox{\hyperlink{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7}{threads\_}});}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{keyword}{auto}\ start\_time\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00045}00045\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00046}00046\ \ \ \ \ \textcolor{comment}{//\ Tworzenie\ i\ uruchamianie\ wątków.}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00047}00047\ \ \ \ \ std::vector<std::thread>\ workers;}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00048}00048\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ segment\_size\ =\ \mbox{\hyperlink{class_pi_calculator_a23b9b741d766f181d43be31f7ef09500}{intervals\_}}\ /\ \mbox{\hyperlink{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7}{threads\_}};}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00049}00049\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ i\ =\ 0;\ i\ <\ \mbox{\hyperlink{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7}{threads\_}};\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00050}00050\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ start\ =\ i\ *\ segment\_size;}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ end\ =\ (i\ ==\ \mbox{\hyperlink{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7}{threads\_}}\ -\/\ 1)\ ?\ \mbox{\hyperlink{class_pi_calculator_a23b9b741d766f181d43be31f7ef09500}{intervals\_}}\ :\ (i\ +\ 1)\ *\ segment\_size;}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ workers.emplace\_back(\mbox{\hyperlink{class_pi_calculator_a10f954274ef9371836d85af8bc11a531}{worker}},\ \textcolor{keyword}{this},\ start,\ end,\ std::ref(\mbox{\hyperlink{class_pi_calculator_a89b160f45a01773f1a2fd42fd7c9d28c}{results\_}}[i]));}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00053}00053\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00055}00055\ \ \ \ \ \textcolor{comment}{//\ Oczekiwanie\ na\ zakończenie\ pracy\ wątków.}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00056}00056\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\&\ thread\ :\ workers)\ \{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00057}00057\ \ \ \ \ \ \ \ \ thread.join();}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00058}00058\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00060}00060\ \ \ \ \ \textcolor{keyword}{auto}\ end\_time\ =\ std::chrono::high\_resolution\_clock::now();}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00061}00061\ \ \ \ \ std::chrono::duration<double>\ elapsed\ =\ end\_time\ -\/\ start\_time;}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00062}00062\ \ \ \ \ \mbox{\hyperlink{class_pi_calculator_aea6b9374df77caf30c3911f56da2b4cc}{executionTime\_}}\ =\ elapsed.count();}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00063}00063\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00064}00064\ \ \ \ \ \textcolor{comment}{//\ Sumowanie\ wyników\ częściowych.}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00065}00065\ \ \ \ \ \textcolor{keywordtype}{double}\ total\_sum\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{double}\ partial\ :\ \mbox{\hyperlink{class_pi_calculator_a89b160f45a01773f1a2fd42fd7c9d28c}{results\_}})\ \{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00067}00067\ \ \ \ \ \ \ \ \ total\_sum\ +=\ partial;}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00068}00068\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00069}00069\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00070}00070\ \ \ \ \ \textcolor{keywordflow}{return}\ total\_sum\ *\ 4.0;\ \textcolor{comment}{//\ Mnożenie\ przez\ 4\ zgodnie\ z\ wzorem\ na\ całkę\ liczby\ Pi.}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00071}00071\ \}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00077}\mbox{\hyperlink{class_pi_calculator_a8c0a2f4a4dfe89994767b1c6c2078892}{00077}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_pi_calculator_a8c0a2f4a4dfe89994767b1c6c2078892}{PiCalculator::getExecutionTime}}()\textcolor{keyword}{\ const\ }\{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00078}00078\ \ \ \ \ \textcolor{keywordflow}{return}\ \mbox{\hyperlink{class_pi_calculator_aea6b9374df77caf30c3911f56da2b4cc}{executionTime\_}};}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00079}00079\ \}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00080}00080\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00088}\mbox{\hyperlink{class_pi_calculator_a331c83ed62908c59fb266e2f6cdeffd0}{00088}}\ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_pi_calculator_a331c83ed62908c59fb266e2f6cdeffd0}{PiCalculator::computeSegment}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ start,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ end)\ \{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00089}00089\ \ \ \ \ \textcolor{keywordtype}{double}\ sum\ =\ 0.0;}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{keywordtype}{double}\ step\ =\ 1.0\ /\ \mbox{\hyperlink{class_pi_calculator_a23b9b741d766f181d43be31f7ef09500}{intervals\_}};}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00091}00091\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ i\ =\ start;\ i\ <\ end;\ ++i)\ \{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00092}00092\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ x\ =\ (i\ +\ 0.5)\ *\ step;}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00093}00093\ \ \ \ \ \ \ \ \ sum\ +=\ 1.0\ /\ (1.0\ +\ x\ *\ x);}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00094}00094\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{keywordflow}{return}\ sum\ *\ step;\ \textcolor{comment}{//\ Skalowanie\ wyniku\ na\ podstawie\ długości\ kroku.}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00096}00096\ \}}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00106}\mbox{\hyperlink{class_pi_calculator_a10f954274ef9371836d85af8bc11a531}{00106}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pi_calculator_a10f954274ef9371836d85af8bc11a531}{PiCalculator::worker}}(\mbox{\hyperlink{class_pi_calculator}{PiCalculator}}*\ calculator,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ start,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ end,\ \textcolor{keywordtype}{double}\&\ result)\ \{}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00107}00107\ \ \ \ \ result\ =\ calculator-\/>\mbox{\hyperlink{class_pi_calculator_a331c83ed62908c59fb266e2f6cdeffd0}{computeSegment}}(start,\ end);}
+\DoxyCodeLine{\Hypertarget{_intergral_8cpp_source_l00108}00108\ \}}
+
+\end{DoxyCode}

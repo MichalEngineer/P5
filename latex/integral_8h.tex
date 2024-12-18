@@ -1,0 +1,55 @@
+\doxysection{Dokumentacja pliku Intergral/integral.h}
+\hypertarget{integral_8h}{}\label{integral_8h}\index{Intergral/integral.h@{Intergral/integral.h}}
+
+
+Deklaracja klasy \doxylink{class_pi_calculator}{Pi\+Calculator} do obliczania wartoœci liczby Pi metod¹ numerycznej ca³ki.  
+
+
+{\ttfamily \#include $<$vector$>$}\newline
+{\ttfamily \#include $<$thread$>$}\newline
+\doxysubsubsection*{Komponenty}
+\begin{DoxyCompactItemize}
+\item 
+class \mbox{\hyperlink{class_pi_calculator}{Pi\+Calculator}}
+\begin{DoxyCompactList}\small\item\em A class to calculate the value of Pi using numerical integration. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegÃ³Å‚owy}
+Deklaracja klasy \doxylink{class_pi_calculator}{Pi\+Calculator} do obliczania wartoœci liczby Pi metod¹ numerycznej ca³ki. 
+
+Biblioteka ta pozwala na obliczenie wartoœci liczby Pi za pomoc¹ metody numerycznej ca³ki prostok¹tów. Obliczenia mog¹ byæ równolegle wykonywane z u¿yciem wielow¹tkowoœci, co przyspiesza czas wykonywania w przypadku du¿ych zakresów obliczeñ.\hypertarget{integral_8h_autotoc_md0}{}\doxysubsubsection{\texorpdfstring{Kluczowe cechy\+:}{Kluczowe cechy\+:}}\label{integral_8h_autotoc_md0}
+
+\begin{DoxyItemize}
+\item Obs³uga podzia³u pracy na wiele w¹tków.
+\item Pomiar czasu wykonywania obliczeñ.
+\item Wysoka precyzja dziêki du¿ej liczbie przedzia³ów.
+\end{DoxyItemize}\hypertarget{integral_8h_autotoc_md1}{}\doxysubsubsection{\texorpdfstring{Wykorzystywane biblioteki\+:}{Wykorzystywane biblioteki\+:}}\label{integral_8h_autotoc_md1}
+
+\begin{DoxyItemize}
+\item {\ttfamily \texorpdfstring{$<$}{<}vector\texorpdfstring{$>$}{>}}\+: Przechowuje wyniki czêœciowych obliczeñ dla poszczególnych w¹tków.
+\item {\ttfamily \texorpdfstring{$<$}{<}thread\texorpdfstring{$>$}{>}}\+: Pozwala na uruchamianie w¹tków do równoleg³ego przetwarzania segmentów danych.
+\end{DoxyItemize}\hypertarget{integral_8h_autotoc_md2}{}\doxysubsubsection{\texorpdfstring{Przyk³ad u¿ycia\+:}{Przyk³ad u¿ycia\+:}}\label{integral_8h_autotoc_md2}
+
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{integral_8h}{integral.h}}"{}}}
+\DoxyCodeLine{}
+\DoxyCodeLine{\textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\ \ \ \ \mbox{\hyperlink{class_pi_calculator}{PiCalculator}}\ calculator(1000000,\ 4);\ \textcolor{comment}{//\ 1\ 000\ 000\ przedzia³ów, 4\ w¹tki}}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ pi\ =\ calculator.calculate();}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordtype}{double}\ time\ =\ calculator.getExecutionTime();}
+\DoxyCodeLine{}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Pi\ =\ "{}}\ <<\ pi\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Czas\ wykonania:\ "{}}\ <<\ time\ <<\ \textcolor{stringliteral}{"{}\ sekund"{}}\ <<\ std::endl;}
+\DoxyCodeLine{\ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\}}
+
+\end{DoxyCode}
+
+
+\begin{DoxyNote}{Nota}
+Liczba przedzia³ów i w¹tków wp³ywa na precyzjê i czas obliczeñ. 
+\end{DoxyNote}
+
+
+Definicja w pliku \mbox{\hyperlink{integral_8h_source}{integral.\+h}}.
+

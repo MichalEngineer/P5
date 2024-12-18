@@ -1,0 +1,103 @@
+\doxysection{main.\+cpp}
+\hypertarget{main_8cpp_source}{}\label{main_8cpp_source}\index{Intergral/main.cpp@{Intergral/main.cpp}}
+\mbox{\hyperlink{main_8cpp}{IdÅº do dokumentacji tego pliku.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00019}00019\ \textcolor{preprocessor}{\#include\ <iostream>}\ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00020}00020\ \textcolor{preprocessor}{\#include\ <iomanip>}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00021}00021\ \textcolor{preprocessor}{\#include\ <fstream>}\ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00022}00022\ \textcolor{preprocessor}{\#include\ "{}\mbox{\hyperlink{integral_8h}{integral.h}}"{}}\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00023}00023\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00031}\mbox{\hyperlink{main_8cpp_a5dcb537699bebb9e9db36ab19c5aacf7}{00031}}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{main_8cpp_a5dcb537699bebb9e9db36ab19c5aacf7}{runTests}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00032}00032\ \ \ \ \ \textcolor{comment}{//\ Lista\ liczby\ podzia³ów (w\ ró¿nych\ skalach)\ u¿ywanych\ w\ testach.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00033}00033\ \ \ \ \ \textcolor{keyword}{const}\ std::vector<long\ long>\ intervalsList\ =\ \{\ 100000000,\ 1000000000,\ 3000000000\ \};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00034}00034\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00035}00035\ \ \ \ \ \textcolor{comment}{//\ Maksymalna\ liczba\ w¹tków, które bêd¹\ testowane\ w\ ramach\ testów automatycznych.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00036}00036\ \ \ \ \ \textcolor{keyword}{const}\ \textcolor{keywordtype}{int}\ maxThreads\ =\ 50;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00037}00037\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00038}00038\ \ \ \ \ \textcolor{comment}{//\ Otwarcie\ pliku\ wynikowego,\ do\ którego\ bêd¹\ zapisywane\ rezultaty\ testów w\ formacie\ CSV.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00039}00039\ \ \ \ \ std::ofstream\ resultsFile(\textcolor{stringliteral}{"{}results.csv"{}});}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00041}00041\ \ \ \ \ \textcolor{comment}{//\ Zapisanie\ nag³ówka\ do\ pliku\ CSV\ (nag³ówki\ dla\ ka¿dego\ typu\ danych,\ który bêdzie\ zapisywany).}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00042}00042\ \ \ \ \ resultsFile\ <<\ \textcolor{stringliteral}{"{}Intervals,Threads,Time\ (s),Pi\ Approximation\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00043}00043\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00044}00044\ \ \ \ \ \textcolor{comment}{//\ Pêtla\ przechodz¹ca\ przez\ ka¿dy\ przypadek\ liczby\ podzia³ów (z\ listy\ intervalsList).}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00045}00045\ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keyword}{auto}\ intervals\ :\ intervalsList)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00046}00046\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Pêtla\ przechodz¹ca\ przez\ liczbê w¹tków, które bêd¹\ testowane.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00047}00047\ \ \ \ \ \ \ \ \ \textcolor{keywordflow}{for}\ (\textcolor{keywordtype}{int}\ threads\ =\ 1;\ threads\ <=\ maxThreads;\ ++threads)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00048}00048\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Tworzenie\ obiektu\ kalkulatora,\ który obliczy\ wartoœæ Pi\ dla\ aktualnej\ liczby\ podzia³ów i\ w¹tków.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00049}00049\ \ \ \ \ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_pi_calculator}{PiCalculator}}\ calculator(intervals,\ threads);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00050}00050\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00051}00051\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Obliczanie\ przybli¿onej\ wartoœci\ liczby\ Pi\ oraz\ czasu\ potrzebnego\ na\ obliczenie.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00052}00052\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pi\ =\ calculator.\mbox{\hyperlink{class_pi_calculator_a5517141c51b94b34fb3d1986a25cc299}{calculate}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00053}00053\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ time\ =\ calculator.\mbox{\hyperlink{class_pi_calculator_a8c0a2f4a4dfe89994767b1c6c2078892}{getExecutionTime}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00054}00054\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00055}00055\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Zapisanie\ wyników obliczeñ do\ pliku\ CSV\ (liczba\ podzia³ów, liczba\ w¹tków, czas\ wykonania,\ przybli¿ona\ wartoœæ Pi).}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00056}00056\ \ \ \ \ \ \ \ \ \ \ \ \ resultsFile\ <<\ intervals\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ threads\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ time\ <<\ \textcolor{stringliteral}{"{},"{}}\ <<\ pi\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00057}00057\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00058}00058\ \ \ \ \ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wypisanie\ wyników na\ ekranie\ dla\ u¿ytkownika.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00059}00059\ \ \ \ \ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Intervals:\ "{}}\ <<\ intervals}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00060}00060\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ Threads:\ "{}}\ <<\ threads}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00061}00061\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{},\ Time:\ "{}}\ <<\ time}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00062}00062\ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ \ <<\ \textcolor{stringliteral}{"{}\ s,\ Pi:\ "{}}\ <<\ pi\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00063}00063\ \ \ \ \ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00064}00064\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00066}00066\ \ \ \ \ \textcolor{comment}{//\ Zamkniêcie\ pliku\ po\ zakoñczeniu\ zapisywania\ wyników.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00067}00067\ \ \ \ \ resultsFile.close();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00068}00068\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00069}00069\ \ \ \ \ \textcolor{comment}{//\ Wypisanie\ komunikatu,\ ¿e\ testy\ zosta³y\ zakoñczone,\ a\ wyniki\ zosta³y\ zapisane\ w\ pliku.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00070}00070\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Testy\ zakoñczone.\ Wyniki\ zapisano\ w\ pliku\ 'results.csv'.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00071}00071\ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00072}00072\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00086}\mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{00086}}\ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}}()\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00087}00087\ \ \ \ \ \textcolor{comment}{//\ Zmienna\ przechowuj¹ca\ wybór u¿ytkownika.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00088}00088\ \ \ \ \ \textcolor{keywordtype}{int}\ option;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00089}00089\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00090}00090\ \ \ \ \ \textcolor{comment}{//\ Wyœwietlenie\ komunikatu\ z\ proœb¹\ o\ wybór jednej\ z\ dwóch opcji.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00091}00091\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Wybierz\ opcje:\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00092}00092\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}1\ -\/\ Uruchom\ testy\ automatyczne\ i\ zapisz\ wyniki\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00093}00093\ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}2\ -\/\ Oblicz\ Pi\ dla\ podanej\ liczby\ podzia³ów i\ w¹tków\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00094}00094\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00095}00095\ \ \ \ \ \textcolor{comment}{//\ Wczytanie\ wyboru\ u¿ytkownika.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00096}00096\ \ \ \ \ std::cin\ >>\ option;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00097}00097\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00098}00098\ \ \ \ \ \textcolor{comment}{//\ Jeœli\ u¿ytkownik\ wybierze\ opcjê 1,\ uruchomimy\ testy\ automatyczne.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00099}00099\ \ \ \ \ \textcolor{keywordflow}{if}\ (option\ ==\ 1)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00100}00100\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{main_8cpp_a5dcb537699bebb9e9db36ab19c5aacf7}{runTests}}();\ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00101}00101\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00102}00102\ \ \ \ \ \textcolor{comment}{//\ Jeœli\ u¿ytkownik\ wybierze\ opcjê 2,\ zapytamy\ go\ o\ parametry\ i\ obliczymy\ liczbê Pi.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00103}00103\ \ \ \ \ \textcolor{keywordflow}{else}\ \textcolor{keywordflow}{if}\ (option\ ==\ 2)\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00104}00104\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ intervals;\ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00105}00105\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{int}\ threads;\ \ \ \ \ \ \ \ \ \ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00106}00106\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00107}00107\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poproszenie\ u¿ytkownika\ o\ podanie\ liczby\ przedzia³ów do\ obliczeñ.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00108}00108\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Podaj\ liczbe\ podzialow\ przedzialu\ (np.\ 100000000):\ "{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00109}00109\ \ \ \ \ \ \ \ \ std::cin\ >>\ intervals;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00110}00110\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00111}00111\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Poproszenie\ u¿ytkownika\ o\ podanie\ liczby\ w¹tków do\ obliczeñ.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00112}00112\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Podaj\ liczbe\ watkow\ (np.\ 4):\ "{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00113}00113\ \ \ \ \ \ \ \ \ std::cin\ >>\ threads;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00114}00114\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00115}00115\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Utworzenie\ obiektu\ kalkulatora\ z\ odpowiednimi\ parametrami.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00116}00116\ \ \ \ \ \ \ \ \ \mbox{\hyperlink{class_pi_calculator}{PiCalculator}}\ calculator(intervals,\ threads);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00117}00117\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00118}00118\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Obliczenie\ liczby\ Pi\ i\ czasu\ obliczeñ.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00119}00119\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ pi\ =\ calculator.\mbox{\hyperlink{class_pi_calculator_a5517141c51b94b34fb3d1986a25cc299}{calculate}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00120}00120\ \ \ \ \ \ \ \ \ \textcolor{keywordtype}{double}\ executionTime\ =\ calculator.\mbox{\hyperlink{class_pi_calculator_a8c0a2f4a4dfe89994767b1c6c2078892}{getExecutionTime}}();}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00121}00121\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00122}00122\ \ \ \ \ \ \ \ \ \textcolor{comment}{//\ Wyœwietlenie\ wyników na\ ekranie\ z\ ustawion¹\ precyzj¹\ na\ 15\ miejsc\ po\ przecinku.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00123}00123\ \ \ \ \ \ \ \ \ std::cout\ <<\ std::fixed\ <<\ std::setprecision(15);}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00124}00124\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Przyblizona\ wartosc\ liczby\ Pi:\ "{}}\ <<\ pi\ <<\ \textcolor{stringliteral}{"{}\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00125}00125\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Czas\ obliczen:\ "{}}\ <<\ executionTime\ <<\ \textcolor{stringliteral}{"{}\ sekund\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00126}00126\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00127}00127\ \ \ \ \ \textcolor{comment}{//\ Jeœli\ u¿ytkownik\ poda\ niepoprawn¹\ opcjê, wyœwietlamy\ komunikat\ o\ b³êdzie.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00128}00128\ \ \ \ \ \textcolor{keywordflow}{else}\ \{}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00129}00129\ \ \ \ \ \ \ \ \ std::cout\ <<\ \textcolor{stringliteral}{"{}Niepoprawna\ opcja.\ Koniec\ programu.\(\backslash\)n"{}};}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00130}00130\ \ \ \ \ \}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00131}00131\ }
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00132}00132\ \ \ \ \ \textcolor{comment}{//\ Zwrócenie\ wartoœci\ 0,\ co\ oznacza\ zakoñczenie\ programu\ bez\ b³êdów.}}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00133}00133\ \ \ \ \ \textcolor{keywordflow}{return}\ 0;}
+\DoxyCodeLine{\Hypertarget{main_8cpp_source_l00134}00134\ \}}
+
+\end{DoxyCode}

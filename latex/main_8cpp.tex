@@ -1,0 +1,90 @@
+\doxysection{Dokumentacja pliku Intergral/main.cpp}
+\hypertarget{main_8cpp}{}\label{main_8cpp}\index{Intergral/main.cpp@{Intergral/main.cpp}}
+
+
+G³ówny plik programu do obliczania liczby Pi za pomoc¹ numerycznej ca³ki.  
+
+
+{\ttfamily \#include $<$iostream$>$}\newline
+{\ttfamily \#include $<$iomanip$>$}\newline
+{\ttfamily \#include $<$fstream$>$}\newline
+{\ttfamily \#include "{}integral.\+h"{}}\newline
+\doxysubsubsection*{Funkcje}
+\begin{DoxyCompactItemize}
+\item 
+void \mbox{\hyperlink{main_8cpp_a5dcb537699bebb9e9db36ab19c5aacf7}{run\+Tests}} ()
+\begin{DoxyCompactList}\small\item\em \texorpdfstring{$<$}{<} Nag³ówek klasy \doxylink{class_pi_calculator}{Pi\+Calculator}, zawieraj¹cy deklaracje metod obliczaj¹cych liczbê Pi. \end{DoxyCompactList}\item 
+int \mbox{\hyperlink{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}{main}} ()
+\begin{DoxyCompactList}\small\item\em Funkcja g³ówna programu, która umo¿liwia wybór trybu dzia³ania programu. \end{DoxyCompactList}\end{DoxyCompactItemize}
+
+
+\doxysubsection{Opis szczegÃ³Å‚owy}
+G³ówny plik programu do obliczania liczby Pi za pomoc¹ numerycznej ca³ki. 
+
+Program oferuje dwa tryby dzia³ania\+:
+\begin{DoxyItemize}
+\item Uruchomienie testów automatycznych dla ró¿nych liczby podzia³ów i w¹tków.
+\item Rêczne obliczanie przybli¿onej wartoœci liczby Pi dla podanej liczby podzia³ów i w¹tków.
+\end{DoxyItemize}
+
+Wyniki testów s¹ zapisywane w pliku CSV, a u¿ytkownik mo¿e œledziæ czas obliczeñ oraz przybli¿on¹ wartoœæ liczby Pi.\hypertarget{main_8cpp_autotoc_md4}{}\doxysubsubsection{\texorpdfstring{Wykorzystywane biblioteki\+:}{Wykorzystywane biblioteki\+:}}\label{main_8cpp_autotoc_md4}
+
+\begin{DoxyItemize}
+\item {\ttfamily \texorpdfstring{$<$}{<}iostream\texorpdfstring{$>$}{>}}\+: Standardowa biblioteka wejœcia/wyjœcia, u¿ywana do komunikacji z u¿ytkownikiem (wypisywanie wyników i pobieranie danych).
+\item {\ttfamily \texorpdfstring{$<$}{<}iomanip\texorpdfstring{$>$}{>}}\+: Biblioteka do manipulacji formatem wyjœcia, u¿ywana w celu ustawienia precyzyjnoœci wyœwietlanej wartoœci liczby Pi.
+\item {\ttfamily \texorpdfstring{$<$}{<}fstream\texorpdfstring{$>$}{>}}\+: Biblioteka umo¿liwiaj¹ca zapis wyników do pliku CSV.
+\item {\ttfamily "{}integral.\+h"{}}\+: Nag³ówek klasy {\ttfamily \doxylink{class_pi_calculator}{Pi\+Calculator}} zawieraj¹cej metody obliczania liczby Pi. 
+\end{DoxyItemize}
+
+Definicja w pliku \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+
+
+\doxysubsection{Dokumentacja funkcji}
+\Hypertarget{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4}\index{main.cpp@{main.cpp}!main@{main}}
+\index{main@{main}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{main()}{main()}}
+{\footnotesize\ttfamily \label{main_8cpp_ae66f6b31b5ad750f1fe042a706a4e3d4} 
+int main (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+Funkcja g³ówna programu, która umo¿liwia wybór trybu dzia³ania programu. 
+
+Program dzia³a w dwóch trybach\+:
+\begin{DoxyItemize}
+\item Uruchomienie testów automatycznych.
+\item Rêczne obliczanie liczby Pi dla podanych przez u¿ytkownika parametrów.
+\end{DoxyItemize}
+
+U¿ytkownik wybiera tryb dzia³ania, a nastêpnie program realizuje odpowiedni¹ funkcjonalnoœæ. Wyniki obliczeñ s¹ wyœwietlane na ekranie i zapisywane w pliku CSV w przypadku testów automatycznych.
+
+\begin{DoxyReturn}{Zwraca}
+0 jeœli program zakoñczy³ siê poprawnie. 
+\end{DoxyReturn}
+\texorpdfstring{$<$}{<} Uruchomienie funkcji przeprowadzaj¹cej testy automatyczne.
+
+\texorpdfstring{$<$}{<} Zmienna do przechowywania liczby przedzia³ów.
+
+\texorpdfstring{$<$}{<} Zmienna do przechowywania liczby w¹tków.
+
+Definicja w linii \mbox{\hyperlink{main_8cpp_source_l00086}{86}} pliku \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+
+\Hypertarget{main_8cpp_a5dcb537699bebb9e9db36ab19c5aacf7}\index{main.cpp@{main.cpp}!runTests@{runTests}}
+\index{runTests@{runTests}!main.cpp@{main.cpp}}
+\doxysubsubsection{\texorpdfstring{runTests()}{runTests()}}
+{\footnotesize\ttfamily \label{main_8cpp_a5dcb537699bebb9e9db36ab19c5aacf7} 
+void run\+Tests (\begin{DoxyParamCaption}{}{}\end{DoxyParamCaption})}
+
+
+
+\texorpdfstring{$<$}{<} Nag³ówek klasy \doxylink{class_pi_calculator}{Pi\+Calculator}, zawieraj¹cy deklaracje metod obliczaj¹cych liczbê Pi. 
+
+\texorpdfstring{$<$}{<} Biblioteka do obs³ugi wejœcia/wyjœcia, w tym wypisywania na ekranie. Biblioteka do manipulacji formatem wyjœcia (np. ustawianie precyzji liczby zmiennoprzecinkowej). Biblioteka do obs³ugi plików, w tym zapisywania wyników do pliku CSV.
+
+Funkcja do uruchamiania testów automatycznych obliczeñ liczby Pi dla ró¿nych liczby podzia³ów i w¹tków.
+
+Funkcja ta przeprowadza testy automatyczne, obliczaj¹c wartoœæ liczby Pi dla ró¿nych liczby podzia³ów i w¹tków. Wyniki s¹ zapisywane w pliku CSV oraz wypisywane na ekranie. 
+
+Definicja w linii \mbox{\hyperlink{main_8cpp_source_l00031}{31}} pliku \mbox{\hyperlink{main_8cpp_source}{main.\+cpp}}.
+

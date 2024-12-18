@@ -1,0 +1,29 @@
+\doxysection{integral.\+h}
+\hypertarget{integral_8h_source}{}\label{integral_8h_source}\index{Intergral/integral.h@{Intergral/integral.h}}
+\mbox{\hyperlink{integral_8h}{Idź do dokumentacji tego pliku.}}
+\begin{DoxyCode}{0}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00001}00001\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00037}00037\ \textcolor{preprocessor}{\#pragma\ once}}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00038}00038\ \textcolor{preprocessor}{\#include\ <vector>}}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00039}00039\ \textcolor{preprocessor}{\#include\ <thread>}}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00040}00040\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00045}\mbox{\hyperlink{class_pi_calculator}{00045}}\ \textcolor{keyword}{class\ }\mbox{\hyperlink{class_pi_calculator}{PiCalculator}}\ \{}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00046}00046\ \textcolor{keyword}{public}:}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00052}00052\ \ \ \ \ \mbox{\hyperlink{class_pi_calculator_a36310971996d21b221f0c4c4ca8e6816}{PiCalculator}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ intervals,\ \textcolor{keywordtype}{int}\ threads);}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00053}00053\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00058}00058\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_pi_calculator_a5517141c51b94b34fb3d1986a25cc299}{calculate}}();}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00059}00059\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00064}00064\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_pi_calculator_a8c0a2f4a4dfe89994767b1c6c2078892}{getExecutionTime}}()\ \textcolor{keyword}{const};}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00065}00065\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00066}00066\ \textcolor{keyword}{private}:}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00073}00073\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_pi_calculator_a331c83ed62908c59fb266e2f6cdeffd0}{computeSegment}}(\textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ start,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ end);}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00074}00074\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00082}00082\ \ \ \ \ \textcolor{keyword}{static}\ \textcolor{keywordtype}{void}\ \mbox{\hyperlink{class_pi_calculator_a10f954274ef9371836d85af8bc11a531}{worker}}(\mbox{\hyperlink{class_pi_calculator}{PiCalculator}}*\ calculator,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ start,\ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ end,\ \textcolor{keywordtype}{double}\&\ result);}
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00083}00083\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00084}\mbox{\hyperlink{class_pi_calculator_a23b9b741d766f181d43be31f7ef09500}{00084}}\ \ \ \ \ \textcolor{keywordtype}{long}\ \textcolor{keywordtype}{long}\ \mbox{\hyperlink{class_pi_calculator_a23b9b741d766f181d43be31f7ef09500}{intervals\_}};\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00085}\mbox{\hyperlink{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7}{00085}}\ \ \ \ \ \textcolor{keywordtype}{int}\ \mbox{\hyperlink{class_pi_calculator_a3f8c5ba608acb82f536aabc605589da7}{threads\_}};\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00086}\mbox{\hyperlink{class_pi_calculator_aea6b9374df77caf30c3911f56da2b4cc}{00086}}\ \ \ \ \ \textcolor{keywordtype}{double}\ \mbox{\hyperlink{class_pi_calculator_aea6b9374df77caf30c3911f56da2b4cc}{executionTime\_}};\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00087}\mbox{\hyperlink{class_pi_calculator_a89b160f45a01773f1a2fd42fd7c9d28c}{00087}}\ \ \ \ \ std::vector<double>\ \mbox{\hyperlink{class_pi_calculator_a89b160f45a01773f1a2fd42fd7c9d28c}{results\_}};\ }
+\DoxyCodeLine{\Hypertarget{integral_8h_source_l00088}00088\ \};}
+
+\end{DoxyCode}
